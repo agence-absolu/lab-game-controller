@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: #17171a;
+  color: #f2efe9;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  cursor: none;
+  user-select: none;
+}
+
+/* Curseur en croix */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform;
+}
+
+.cursor__h,
+.cursor__v {
+  position: absolute;
+  background: #f2efe9;
+  transition: background 0.15s;
+}
+
+.cursor__h {
+  width: 40px;
+  height: 2px;
+  left: -20px;
+  top: -1px;
+}
+
+.cursor__v {
+  width: 2px;
+  height: 40px;
+  left: -1px;
+  top: -20px;
+}
+
+.cursor.is-pad .cursor__h,
+.cursor.is-pad .cursor__v {
+  background: #5fd068;
+}
+
+.cursor.is-pressed .cursor__h,
+.cursor.is-pressed .cursor__v {
+  background: #ff6b4a;
+}
+
+/* Marques posées au clic / bouton A */
+.mark {
+  position: fixed;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: mark-in 0.3s ease-out;
+}
+
+@keyframes mark-in {
+  from {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Panneau d'état */
+.hud {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hud__row span {
+  color: rgba(242, 239, 233, 0.6);
+}
+
+.hud__row strong {
+  font-weight: 600;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hud__sticks {
+  display: flex;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.stick {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 239, 233, 0.25);
+}
+
+.stick span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: #5fd068;
+}
+
+.hud__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.hud__buttons li {
+  min-width: 1.75rem;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  text-align: center;
+  font-size: 0.6875rem;
+}
+
+.hud__buttons li.is-on {
+  background: #5fd068;
+  color: #17171a;
+}
+
+.hud__hint {
+  margin-top: 0.75rem;
+  color: rgba(242, 239, 233, 0.5);
+  font-size: 0.75rem;
+}
